@@ -10,11 +10,11 @@ from lightgbm import LGBMClassifier
 
 os.environ["JOBLIB_MULTIPROCESSING"] = "0"
 
-model_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "model", "best_model.pickle"))
-model = pickle.load(open(model_path, "rb"))
+#model_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "model", "best_model.pickle"))
+model = pickle.load(open(r"best_model.pickle", "rb"))
 
-data_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "data", "sample_full.csv"))
-df = pd.read_csv(data_path)
+#data_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "data", "sample_full.csv"))
+df = pd.read_csv(r"sample_full.csv")
 df['SK_ID_CURR'] = df['SK_ID_CURR'].astype(int)
 
 top_features = [
