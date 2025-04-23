@@ -5,3 +5,4 @@ shap
 lightgbm
 scikit-learn
 matplotlib
+gunicorn
