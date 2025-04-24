@@ -16,7 +16,6 @@ os.environ["JOBLIB_MULTIPROCESSING"] = "0"
 #data_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "data", "sample_full.csv"))
 #df = pd.read_csv(r"api/df_api_1000.csv")
 
-@st.cache(allow_output_mutation=True)
 def load_model():
     try:
         return pickle.load(open(r"api/model.pkl", 'rb'))
