@@ -1,1 +1,8 @@
-
+flask>=3.0.3
+pandas>=2.2.2
+numpy>=1.26.4
+lightgbm>=4.5.0
+requests>=2.32.3
+scikit-learn>=1.5.1
+gunicorn>=21.0.0
+matplotlib>=3.9.2
