@@ -11,7 +11,7 @@ from lightgbm import LGBMClassifier
 os.environ["JOBLIB_MULTIPROCESSING"] = "0"
 
 #model_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "model", "best_model.pickle"))
-model = pickle.load(open(r"api/model.pkl", 'rb'))
+model = pickle.load(open(r"model.pkl", 'rb'))
 
 #data_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "data", "sample_full.csv"))
 df = pd.read_csv(r"api/df_api_1000.csv")
