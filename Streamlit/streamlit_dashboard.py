@@ -17,7 +17,7 @@ except Exception as e:
     st.stop()
 
 if st.button("Obtenir la prédiction via API"):
-    url = "https://shap-credit-api-mamdou-0a39fd6254f1.herokuapp.com/api/predict"
+    url = "https://projet8-production-31ea.up.railway.app/api/predict"
 
     try:
         response = requests.post(url, json={"id_client": int(client_id)})
