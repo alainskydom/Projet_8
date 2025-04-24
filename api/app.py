@@ -18,8 +18,8 @@ df = pd.read_csv(r"api/df_api_1000.csv")
 df['SK_ID_CURR'] = df['SK_ID_CURR'].astype(int)
 
 top_features = [
-    "EXT_SOURCE_3", "EXT_SOURCE_2", "CREDIT_TO_ANNUITY_RATIO",
-    "DAYS_BIRTH", "DAYS_LAST_PHONE_CHANGE"
+    "CREDIT_TERM", "DAYS_BIRTH", "AMT_ANNUITY", "CREDIT_INCOME_PERCENT","ANNUITY_INCOME_PERCENT"
+"
 ]
 
 explainer = shap.Explainer(model, df[top_features])
