@@ -11,10 +11,31 @@ from lightgbm import LGBMClassifier
 os.environ["JOBLIB_MULTIPROCESSING"] = "0"
 
 #model_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "model", "best_model.pickle"))
-model = pickle.load(open(r"model.pkl", 'rb'))
+#model = pickle.load(open(r"model.pkl", 'rb'))
 
 #data_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "data", "sample_full.csv"))
-df = pd.read_csv(r"api/df_api_1000.csv")
+#df = pd.read_csv(r"api/df_api_1000.csv")
+
+@st.cache(allow_output_mutation=True)
+def load_model():
+    try:
+        return pickle.load(open(r"api/model.pkl", 'rb'))
+    except FileNotFoundError:
+        print("Error: Model file not found. Make sure 'model.pkl' is in the correct directory.")
+        return None
+
+model = load_model()
+
+
+# Charger les données
+df_ = pd.read_csv(r"api/df_api_1000.csv")
+df_=df_.loc[:, ~df_.columns.str.match ('Unnamed')]
+#df_calc= df_.drop(['TARGET', 'SK_ID_CURR'], axis=1)
+# df.drop(columns='index', inplace=True)
+
+# Define the threshold of for application.
+threshold = 0.07
+
 df['SK_ID_CURR'] = df['SK_ID_CURR'].astype(int)
 
 top_features = [
