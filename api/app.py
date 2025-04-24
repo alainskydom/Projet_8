@@ -19,7 +19,6 @@ df['SK_ID_CURR'] = df['SK_ID_CURR'].astype(int)
 
 top_features = [
     "CREDIT_TERM", "DAYS_BIRTH", "AMT_ANNUITY", "CREDIT_INCOME_PERCENT","ANNUITY_INCOME_PERCENT"
-"
 ]
 
 explainer = shap.Explainer(model, df[top_features])
