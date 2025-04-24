@@ -16,14 +16,18 @@ os.environ["JOBLIB_MULTIPROCESSING"] = "0"
 #data_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "data", "sample_full.csv"))
 #df = pd.read_csv(r"api/df_api_1000.csv")
 
-def load_model():
-    try:
-        return pickle.load(open(r"api/model.pkl", 'rb'))
-    except FileNotFoundError:
-        print("Error: Model file not found. Make sure 'model.pkl' is in the correct directory.")
-        return None
+#def load_model():
+    #try:
+        #return pickle.load(open(r"api/model.pkl", 'rb'))
+    #except FileNotFoundError:
+        #print("Error: Model file not found. Make sure 'model.pkl' is in the correct directory.")
+        #return None
 
-model = load_model()
+#model = load_model()
+
+# Charger le modèle
+with open('nom_du_fichier.pkl', 'rb') as f:
+    model = pickle.load(f)
 
 
 # Charger les données
