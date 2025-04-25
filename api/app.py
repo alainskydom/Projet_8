@@ -71,7 +71,7 @@ def api_predict():
         proba = model.predict_proba(X)[:, 1][0]
         if proba < threshold:
             prediction=0
-        else prediction=1
+        else: prediction=1
         client_data = X_top.iloc[0].to_dict()
         global_means = df[top_features].mean().round(4).to_dict()
 
