@@ -67,7 +67,7 @@ def api_predict():
         X = client_row.drop(['SK_ID_CURR'], axis=1)
         X_top = client_row[top_features]
 
-        #prediction = model.predict(X)[0]
+        prediction = model.predict(X)[0]
         proba = model.predict_proba(X)[:, 1][0]
         #if proba < threshold:
             #prediction=0
