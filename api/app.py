@@ -48,6 +48,7 @@ top_features = [
 explainer = shap.Explainer(model, df[top_features])
 
 app = Flask(__name__)
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 60  # Timeout en secondes
 
 @app.route('/api/predict', methods=['POST'])
 def api_predict():
