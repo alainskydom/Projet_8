@@ -26,7 +26,8 @@ if st.button("Obtenir la prédiction via API"):
             prediction = result["prediction"]
             proba = result["probability"]
 
-            if prediction == 1:
+            #if prediction == 1:
+            if proba > 0.07
                 st.error("❌ Prêt NON accordé")
             else:
                 st.success("✅ Prêt accordé")
