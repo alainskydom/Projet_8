@@ -121,7 +121,7 @@ fig=plt.figure(figsize=(6, 6))
 h2=plt.scatter(df_[features_1], df_[features_2], color='blue')
 plt.xlabel(features_1)
 plt.ylabel(features_2)
-plt.title(feature_1 "vs" feature_2)
+plt.title(feature_1, "vs", feature_2)
 st.pyplot(fig)
 
         
