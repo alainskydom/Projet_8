@@ -7,14 +7,17 @@ st.set_page_config(page_title="Dashboard Crédit", layout="centered")
 st.title("📊 Dashboard - Décision de crédit")
 
 # 🔁 Récupérer la liste des IDs depuis l'API
+
+st.sidebar.header("Merci de selectionner la demande de crédit:")
 try:
     id_response = requests.get("https://projet8-production-31ea.up.railway.app/api/ids") 
     id_response.raise_for_status()
     ids = id_response.json().get("ids", [])
-    client_id = st.selectbox("Sélectionnez un identifiant client :", ids)
+    client_id = st.sidebar.selectbox("Sélectionnez un identifiant client :", ids)
 except Exception as e:
     st.error(f"Erreur lors de la récupération des IDs : {e}")
     st.stop()
+st.write("Vous avez selectionné la demande n°", ID)
 
 if st.button("Obtenir la prédiction via API"):
     url = "https://projet8-production-31ea.up.railway.app/api/predict"
