@@ -96,7 +96,7 @@ for feature in features:
          # Plot the distribution of feature
          st.write(feature)
          h1=plt.hist(df_[feature], edgecolor = 'k', bins = 25)
-         plt.axvline(int(df_[feature][df_.index==id]), color="red", linestyle=":")
+         plt.axvline(int(df_[feature][df_.index==client_id]), color="red", linestyle=":")
          plt.title(feature + " distribution", size=5)
          plt.xlabel(feature, size=5)
          plt.ylabel("Nombre d'observations", size=5)
