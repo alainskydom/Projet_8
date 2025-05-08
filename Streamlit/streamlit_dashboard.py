@@ -17,7 +17,7 @@ try:
 except Exception as e:
     st.error(f"Erreur lors de la récupération des IDs : {e}")
     st.stop()
-st.write("Vous avez selectionné la demande n°", ID)
+st.write("Vous avez selectionné la demande n°", ids)
 
 if st.button("Obtenir la prédiction via API"):
     url = "https://projet8-production-31ea.up.railway.app/api/predict"
