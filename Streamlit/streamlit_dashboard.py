@@ -26,6 +26,12 @@ except Exception as e:
     st.stop()
 st.write("Vous avez selectionné la demande n°",  client_id)
 
+st.sidebar.write("**Age du client :**", int(df_.iloc[id,2]/365), "ans")
+st.sidebar.write("**Durée du crédit :**", int(df_.iloc[id,0]), "ans")
+st.sidebar.write("**Montant de l'annuité :**", int(df_.iloc[id,7]), "$")
+st.sidebar.write("**Charge du crédit par rapport au revenu :**", int(df_.iloc[id,11]*100), "%")
+st.sidebar.write("**Ancienneté dans l'emploi :**", int(df_.iloc[id,4]/-365), "ans")
+
 if st.button("Obtenir la prédiction via API"):
     url = "https://projet8-production-31ea.up.railway.app/api/predict"
 
