@@ -103,3 +103,17 @@ for feature in features:
          plt.xticks(size=5)
          plt.yticks(size=5)
          st.pyplot(fig)
+
+st.sidebar.subheader("Analyse bivariées, choisissez deux variables")
+df_ = pd.read_csv(r"Streamlit/df_api_1000.csv")
+variables=['CREDIT_TERM','DAYS_BIRTH', "DAYS_EMPLOYED", "AMT_ANNUITY", "CREDIT_INCOME_PERCENT","ANNUITY_INCOME_PERCENT"]
+features_1=st.sidebar.selectbox("les variables clés:", variables)
+features_2=st.sidebar.selectbox("les variables clés:", variables)
+plt.scatter(x, y, color='blue')
+plt.xlabel("1ere caractéristiques")
+plt.ylabel("2eme caractéristiques")
+plt.title("Nuage de points")
+plt.show()
+
+        
+
