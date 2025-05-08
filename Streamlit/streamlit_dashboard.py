@@ -6,6 +6,11 @@ import matplotlib.pyplot as plt
 st.set_page_config(page_title="Dashboard Crédit", layout="centered")
 st.title("📊 Dashboard - Décision de crédit")
 
+@st.cache(allow_output_mutation=True)
+# Charger les données
+df_ = pd.read_csv(r"Streamlit/df_api_1000.csv")
+df_=df_.loc[:, ~df_.columns.str.match ('Unnamed')]
+
 # 🔁 Récupérer la liste des IDs depuis l'API
 
 st.sidebar.header("Merci de selectionner la demande de crédit:")
