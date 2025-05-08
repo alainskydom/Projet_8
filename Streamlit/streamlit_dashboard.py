@@ -25,7 +25,7 @@ except Exception as e:
     st.stop()
 st.write("Vous avez selectionné la demande n°",  client_id)
 
-df_ = pd.read_csv(r"Streamlit/df_api_1000.csv")
+
 
 
 
@@ -79,3 +79,27 @@ if st.button("Obtenir la prédiction via API"):
             st.write(response.json())
     except Exception as e:
         st.error(f"Erreur lors de la connexion à l'API : {e}")
+
+# Afficher les graphiques des variables:
+ 
+st.sidebar.header("Plus d'informations")
+st.sidebar.subheader("Visualisations univariées")
+variables=['CREDIT_TERM','DAYS_BIRTH', "DAYS_EMPLOYED", "AMT_ANNUITY", "CREDIT_INCOME_PERCENT","ANNUITY_INCOME_PERCENT"]
+features=st.sidebar.multiselect("les variables clés:", variables)
+df_ = pd.read_csv(r"Streamlit/df_api_1000.csv")
+ 
+for feature in features:
+         # Set the style of plots
+         plt.style.use('fivethirtyeight')
+         fig=plt.figure(figsize=(6, 6))
+         #if feature=='DAYS_BIRTH':
+         # Plot the distribution of feature
+         st.write(feature)
+         h1=plt.hist(df_[feature], edgecolor = 'k', bins = 25)
+         plt.axvline(int(df_[feature][df_.index==id]), color="red", linestyle=":")
+         plt.title(feature + " distribution", size=5)
+         plt.xlabel(feature, size=5)
+         plt.ylabel("Nombre d'observations", size=5)
+         plt.xticks(size=5)
+         plt.yticks(size=5)
+         st.pyplot(fig)
