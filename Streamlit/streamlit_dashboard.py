@@ -109,19 +109,19 @@ df_ = pd.read_csv(r"Streamlit/df_api_1000.csv")
 variables_1=['CREDIT_TERM','DAYS_BIRTH', "DAYS_EMPLOYED", "AMT_ANNUITY", "CREDIT_INCOME_PERCENT","ANNUITY_INCOME_PERCENT"]
 variables_2=['CREDIT_TERM','DAYS_BIRTH', "DAYS_EMPLOYED", "AMT_ANNUITY", "CREDIT_INCOME_PERCENT","ANNUITY_INCOME_PERCENT"]
 features_1=st.sidebar.selectbox("Sélectionnez une première caractéristique :", variables_1)
-st.write("Vous avez selectionné ", features_1)
+st.sidebar.write("Vous avez selectionné ", features_1)
 
 features_2=st.sidebar.selectbox("Sélectionnez une deuxième caractéristique :", variables_2)
-st.write("Vous avez selectionné ", features_2)
+st.sidebar.write("Vous avez selectionné ", features_2)
 
 # Set the style of plots
 plt.style.use('fivethirtyeight')
 fig=plt.figure(figsize=(6, 6))
 
 h2=plt.scatter(df_[features_1], df_[features_2], color='blue')
-plt.xlabel("1ere caractéristiques")
-plt.ylabel("2eme caractéristiques")
-plt.title("Nuage de points")
+plt.xlabel(features_1)
+plt.ylabel(features_2)
+plt.title(faeture_1 vs feature_2")
 st.pyplot(fig)
 
         
