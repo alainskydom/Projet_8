@@ -114,11 +114,15 @@ st.write("Vous avez selectionné ", features_1)
 features_2=st.sidebar.selectbox("Sélectionnez une deuxième caractéristique :", variables_2)
 st.write("Vous avez selectionné ", features_2)
 
-plt.scatter(df_[features_1], df_[features_2], color='blue')
+# Set the style of plots
+plt.style.use('fivethirtyeight')
+fig=plt.figure(figsize=(6, 6))
+
+h2=plt.scatter(df_[features_1], df_[features_2], color='blue')
 plt.xlabel("1ere caractéristiques")
 plt.ylabel("2eme caractéristiques")
 plt.title("Nuage de points")
-plt.show()
+st.pyplot(fig)
 
         
 
