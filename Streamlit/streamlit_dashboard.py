@@ -8,8 +8,10 @@ st.title("📊 Dashboard - Décision de crédit")
 
 @st.cache(allow_output_mutation=True)
 # Charger les données
-df_ = pd.read_csv(r"Streamlit/df_api_1000.csv")
-df_=df_.loc[:, ~df_.columns.str.match ('Unnamed')]
+def load_data():
+    df_ = pd.read_csv(r"Streamlit/df_api_1000.csv")
+    df_=df_.loc[:, ~df_.columns.str.match ('Unnamed')]
+df_=load_data()
 
 # 🔁 Récupérer la liste des IDs depuis l'API
 
