@@ -130,7 +130,7 @@ st.pyplot(fig)
 
 
 # Création des classes
-df_["Classe"] = pd.cut(df_["ANNUITY_INCOME_PERCENT"], bins=[0, 0.25, 0.5, 0.75, 1], labels=["Classe 1 (<0.25)", "Classe 2 (<0.50)","Classe 3 (<0.75)" "Classe 4 (≤1)"])
+df_["Classe"] = pd.cut(df_["ANNUITY_INCOME_PERCENT"], bins=[0, 0.25, 0.5, 0.75, 1], labels=["Classe 1 (<0.25)", "Classe 2 (<0.50)","Classe 3 (<0.75)", "Classe 4 (≤1)"])
 
 # Calcul des pourcentages
 class_counts = df["Classe"].value_counts(normalize=True) * 100
