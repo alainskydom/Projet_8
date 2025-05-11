@@ -86,7 +86,7 @@ if st.button("Obtenir la prédiction via API"):
 @st.cache()
 def load_features():
     # Requête permettant de récupérer la liste des features
-    data_json = requests.get(URL_API + "load_features")
+    data_json = requests.get("https://projet8-production-31ea.up.railway.app/api/load_features")
     data = data_json.json()
       # Récupération des valeurs sans les [] de la réponse
     lst_id = []
@@ -97,7 +97,7 @@ def load_features():
 @st.cache()
 def load_feature_importance():
     # Requête permettant de récupérer la liste des features importance
-    data_json = requests.get(URL_API + "load_feature_importance")
+    data_json = requests.get("https://projet8-production-31ea.up.railway.app/api/load_feature_importance")
     data = data_json.json()
       # Récupération des valeurs sans les [] de la réponse
     lst_id = []
