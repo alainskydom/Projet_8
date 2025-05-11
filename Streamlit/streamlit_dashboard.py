@@ -82,6 +82,16 @@ if st.button("Obtenir la prédiction via API"):
     except Exception as e:
         st.error(f"Erreur lors de la connexion à l'API : {e}")
 
+@st.cache()
+def load_features():
+    # Requête permettant de récupérer la liste des features
+    data_json = requests.get(URL_API + "load_features")
+    data = data_json.json()
+      # Récupération des valeurs sans les [] de la réponse
+    lst_id = []
+    for i in data:
+        lst_id.append(i)
+    return lst_id
 
 @st.cache()
 def load_feature_importance():
