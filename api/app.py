@@ -97,8 +97,7 @@ def api_predict():
 # charger les features du modèle
 @app.route("/load_features", methods=["GET"])
 def load_features():
-    new_data_test=data_final_test.drop(['Unnamed: 0', 'SK_ID_CURR'], axis=1)
-    features=new_data_test.columns.values.tolist() 
+    features=df.columns.values.tolist() 
     return jsonify (features)
 
 
