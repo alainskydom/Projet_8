@@ -167,6 +167,8 @@ fig = px.pie(df_pie, names="Classe", values="Pourcentage", title="Répartition d
 st.title("Pie-Chart interactif de la colonne de  ANNUITY_INCOME_PERCENT")
 st.plotly_chart(fig)
 
+features=load_features()
+
 st.markdown("<u>Interprétation du modèle - Importance des variables globale :</u>", unsafe_allow_html=True) 
         feature_importance=load_feature_importance()
         df = pd.DataFrame({'feature': features,
