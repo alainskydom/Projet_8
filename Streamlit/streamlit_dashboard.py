@@ -2,6 +2,8 @@ import streamlit as st
 import requests
 import pandas as pd
 import matplotlib.pyplot as plt
+import plotly.express as px
+
 
 st.set_page_config(page_title="Dashboard Crédit", layout="centered")
 st.title("📊 Dashboard - Décision de crédit")
@@ -123,6 +125,26 @@ plt.xlabel(features_1)
 plt.ylabel(features_2)
 plt.title("Analyse bivariée")
 st.pyplot(fig)
+
+# Création d'un pie-chart interactif avec Plotly
+
+
+# Création des classes
+df_["Classe"] = pd.cut(df_["ANNUITY_INCOME_PERCENT"], bins=[0, 0.25, 0.5, 0.75, 1], labels=["Classe 1 (<0.25)", "Classe 2 (<0.50)","Classe 3 (<0.75)" "Classe 4 (≤1)"])
+
+# Calcul des pourcentages
+class_counts = df["Classe"].value_counts(normalize=True) * 100
+df_pie = class_counts.reset_index()
+df_pie.columns = ["Classe", "Pourcentage"]
+
+# Création du pie-chart interactif
+fig = px.pie(df_pie, names="Classe", values="Pourcentage", title="Répartition des valeurs de ANNUITY_INCOME_PERCENT  en 4 classes",
+             color_discrete_sequence=["#ff9999", "#66b3ff", "#99ff99"])
+
+# Affichage dans Streamlit
+st.title("Pie-Chart interactif de la colonne de  ANNUITY_INCOME_PERCENT")
+st.plotly_chart(fig)
+
 
         
 
