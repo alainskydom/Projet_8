@@ -93,6 +93,14 @@ def api_predict():
         print("🚨 Erreur dans l'API :", str(e))
         return jsonify({'error': str(e)}), 500
 
+# calcul de l'importance des features
+@app.route("/load_feature_importance", methods=["GET"])
+def load_feature_importance():
+    features_importance = model.feature_importances_
+    features_importance=features_importance.tolist()
+    return jsonify(features_importance)
+
+
 @app.route('/api/ids', methods=['GET'])
 def get_ids():
     ids = sorted(df['SK_ID_CURR'].tolist())
