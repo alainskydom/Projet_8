@@ -7,6 +7,7 @@ import plotly.express as px
 
 st.set_page_config(page_title="Dashboard Crédit", layout="centered")
 st.title("📊 Dashboard - Décision de crédit")
+URL_API = "https://projet8-production-31ea.up.railway.app/api/"
 
 # Charger les données
 #def load_data():
@@ -167,7 +168,7 @@ fig = px.pie(df_pie, names="Classe", values="Pourcentage", title="Répartition d
 st.title("Pie-Chart interactif de la colonne de  ANNUITY_INCOME_PERCENT")
 st.plotly_chart(fig)
 
-URL_API = "https://projet8-production-31ea.up.railway.app/api/"
+
 
 features=load_features()
 
