@@ -191,8 +191,5 @@ ax.set_yticklabels(df['feature'].head(30))
 # Plot labeling
 plt.xlabel('Normalized Importance'); plt.title('Feature Importances')
 st.pyplot(fig)
-
-else:
-            st.markdown("<i>…</i>", unsafe_allow_html=True)
         
 
