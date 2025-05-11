@@ -95,14 +95,14 @@ def api_predict():
 
 
 # charger les features du modèle
-@app.route("/load_features", methods=["GET"])
+@app.route("/api//load_features", methods=["GET"])
 def load_features():
     features=df.columns.values.tolist() 
     return jsonify (features)
 
 
 # calcul de l'importance des features
-@app.route("/load_feature_importance", methods=["GET"])
+@app.route("/api/load_feature_importance", methods=["GET"])
 def load_feature_importance():
     features_importance = model.feature_importances_
     features_importance=features_importance.tolist()
