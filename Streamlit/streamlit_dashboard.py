@@ -167,6 +167,8 @@ fig = px.pie(df_pie, names="Classe", values="Pourcentage", title="Répartition d
 st.title("Pie-Chart interactif de la colonne de  ANNUITY_INCOME_PERCENT")
 st.plotly_chart(fig)
 
+URL_API = "https://projet8-production-31ea.up.railway.app/api/"
+
 features=load_features()
 
 st.markdown("<u>Interprétation du modèle - Importance des variables globale :</u>", unsafe_allow_html=True) 
