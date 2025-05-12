@@ -176,7 +176,7 @@ df = pd.DataFrame({'feature': features,
 df = df.sort_values('importance', ascending = False).reset_index()
   
 # Normalize the feature importances to add up to one
- df['importance_normalized'] = df['importance'] / df['importance'].sum()
+df['importance_normalized'] = df['importance'] / df['importance'].sum()
        # Make a horizontal bar chart of feature importances
 fig=plt.figure(figsize = (15, 10))
 ax = plt.subplot()
