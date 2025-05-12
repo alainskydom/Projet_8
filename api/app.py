@@ -97,6 +97,7 @@ def api_predict():
 # charger les features du modèle
 @app.route("/api//load_features", methods=["GET"])
 def load_features():
+    df=df.drop(['Unnamed: 0', 'SK_ID_CURR'], axis=1)
     features=df.columns.values.tolist() 
     return jsonify (features)
 
@@ -104,8 +105,10 @@ def load_features():
 # calcul de l'importance des features
 @app.route("/api/load_feature_importance", methods=["GET"])
 def load_feature_importance():
-    features_importance = model.feature_importances_
-    features_importance=features_importance.tolist()
+    features=df.columns.values.tolist()
+    for f in features:
+        features_importance = model.feature_importances_
+        features_importance=features_importance.tolist()
     return jsonify(features_importance)
 
 
