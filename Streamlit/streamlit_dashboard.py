@@ -177,25 +177,25 @@ st.write("feature_importance: ", len(features))
 
 st.markdown("<u>Interprétation du modèle - Importance des variables globale :</u>", unsafe_allow_html=True) 
 
-df = pd.DataFrame({'feature': features,'importance': feature_importance}).sort_values('importance', ascending = False)
-df = df.sort_values('importance', ascending = False).reset_index()
+#df = pd.DataFrame({'feature': features,'importance': feature_importance}).sort_values('importance', ascending = False)
+#df = df.sort_values('importance', ascending = False).reset_index()
     
 # Normalize the feature importances to add up to one
-df['importance_normalized'] = df['importance'] / df['importance'].sum()
+#df['importance_normalized'] = df['importance'] / df['importance'].sum()
 # Make a horizontal bar chart of feature importances
-fig=plt.figure(figsize = (15, 10))
-ax = plt.subplot()
+#fig=plt.figure(figsize = (15, 10))
+#ax = plt.subplot()
 # Need to reverse the index to plot most important on top
-ax.barh(list(reversed(list(df.index[:30]))), 
-df['importance_normalized'].head(30), 
-align = 'center', edgecolor = 'k')
+#ax.barh(list(reversed(list(df.index[:30]))), 
+#df['importance_normalized'].head(30), 
+#align = 'center', edgecolor = 'k')
     
 # Set the yticks and labels
-ax.set_yticks(list(reversed(list(df.index[:30]))))
-ax.set_yticklabels(df['feature'].head(30))
+#ax.set_yticks(list(reversed(list(df.index[:30]))))
+#ax.set_yticklabels(df['feature'].head(30))
     
 # Plot labeling
-plt.xlabel('Normalized Importance'); plt.title('Feature Importances')
-st.pyplot(fig)
+#plt.xlabel('Normalized Importance'); plt.title('Feature Importances')
+#st.pyplot(fig)
         
 
