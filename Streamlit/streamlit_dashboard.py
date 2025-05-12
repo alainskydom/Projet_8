@@ -78,7 +78,7 @@ if st.button("Obtenir la prédiction via API"):
     except Exception as e:
         st.error(f"Erreur lors de la connexion à l'API : {e}")
 
-@st.cache()
+@st.cache_resource()
 def load_features():
     # Requête permettant de récupérer la liste des features
     data_json = requests.get("https://projet8-production-31ea.up.railway.app/api/load_features")
@@ -89,7 +89,7 @@ def load_features():
         lst_id.append(i)
     return lst_id
 
-@st.cache()
+@st.cache_resource()
 def load_feature_importance():
     # Requête permettant de récupérer la liste des features importance
     data_json = requests.get("https://projet8-production-31ea.up.railway.app/api/load_feature_importance")
