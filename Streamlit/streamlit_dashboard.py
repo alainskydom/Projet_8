@@ -170,11 +170,11 @@ st.plotly_chart(fig)
 
 
 
-features=load_features()
+#features=load_features()
 feature_importance=load_feature_importance()
-st.write("feature: ", len(features))
-dft = pd.DataFrame({'feature': features})
-st.table(dft)
+#st.write("feature: ", len(features))
+#dft = pd.DataFrame({'feature': features})
+#st.table(dft)
 st.write("feature_importance:", len(feature_importance))
 dfti = pd.DataFrame({'feature_importance': feature_importance})
 st.table(dfti)
