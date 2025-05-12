@@ -168,7 +168,7 @@ st.markdown("<u>Interprétation du modèle - Importance des variables globale :<
 # Charger les features
 df_ = pd.read_csv(r"Streamlit/df_api_1000.csv")
 df_=df_.loc[:, ~df_.columns.str.match ('Unnamed')]
-df_=df_.drop(['SK_ID_CURR'], axis=1)
+#df_=df_.drop(['SK_ID_CURR'], axis=1)
 features=df_.columns.values.tolist()
 feature_importance=load_feature_importance()
 df = pd.DataFrame({'feature': features,
