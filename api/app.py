@@ -99,7 +99,7 @@ def api_predict():
 def load_features():
     df=df.drop(['SK_ID_CURR'], axis=1)
     features=df.columns.values.tolist() 
-    return jsonify (features)
+    return jsonify(features)
 
 
 # calcul de l'importance des features
