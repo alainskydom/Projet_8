@@ -9,11 +9,6 @@ st.set_page_config(page_title="Dashboard Crédit", layout="centered")
 st.title("📊 Dashboard - Décision de crédit")
 URL_API = "https://projet8-production-31ea.up.railway.app/api/"
 
-# Charger les données
-#def load_data():
-    #df_ = pd.read_csv(r"Streamlit/df_api_1000.csv")
-    #df_=df_.loc[:, ~df_.columns.str.match ('Unnamed')]
-#df_=load_data()
 
 # 🔁 Récupérer la liste des IDs depuis l'API
 
@@ -168,19 +163,38 @@ fig = px.pie(df_pie, names="Classe", values="Pourcentage", title="Répartition d
 st.title("Pie-Chart interactif de la colonne de  ANNUITY_INCOME_PERCENT")
 st.plotly_chart(fig)
 
-
-
-#features=load_features()
-feature_importance=load_feature_importance()
-#st.write("feature: ", len(features))
-#dft = pd.DataFrame({'feature': features})
-#st.table(dft)
-st.write("feature_importance:", len(feature_importance))
-dfti = pd.DataFrame({'feature_importance': feature_importance})
-st.table(dfti)
-
-
 st.markdown("<u>Interprétation du modèle - Importance des variables globale :</u>", unsafe_allow_html=True) 
+
+# Charger les features
+df_ = pd.read_csv(r"Streamlit/df_api_1000.csv")
+df_=df_.loc[:, ~df_.columns.str.match ('Unnamed')]
+df_=df_.drop(['SK_ID_CURR'], axis=1)
+features=df_.columns.values.tolist()
+feature_importance=load_feature_importance()
+df = pd.DataFrame({'feature': features,
+                                    'importance': feature_importance}).sort_values('importance', ascending = False)
+df = df.sort_values('importance', ascending = False).reset_index()
+  
+# Normalize the feature importances to add up to one
+ df['importance_normalized'] = df['importance'] / df['importance'].sum()
+       # Make a horizontal bar chart of feature importances
+fig=plt.figure(figsize = (15, 10))
+ax = plt.subplot()
+      # Need to reverse the index to plot most important on top
+ax.barh(list(reversed(list(df.index[:30]))), 
+df['importance_normalized'].head(30), 
+align = 'center', edgecolor = 'k')
+    
+        # Set the yticks and labels
+ax.set_yticks(list(reversed(list(df.index[:30]))))
+ax.set_yticklabels(df['feature'].head(30))
+    
+        # Plot labeling
+plt.xlabel('Normalized Importance'); plt.title('Feature Importances')
+st.pyplot(fig)
+
+
+
 
 #df = pd.DataFrame({'feature': features,'importance': feature_importance}).sort_values('importance', ascending = False)
 #df = df.sort_values('importance', ascending = False).reset_index()
