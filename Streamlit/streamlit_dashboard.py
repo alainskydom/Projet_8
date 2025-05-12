@@ -171,11 +171,12 @@ st.plotly_chart(fig)
 
 
 features=load_features()
-
-st.markdown("<u>Interprétation du modèle - Importance des variables globale :</u>", unsafe_allow_html=True) 
 feature_importance=load_feature_importance()
 st.write("feature:", len(feature_importance))
 st.write("feature_importance: ", len(features))
+
+st.markdown("<u>Interprétation du modèle - Importance des variables globale :</u>", unsafe_allow_html=True) 
+
 df = pd.DataFrame({'feature': features,'importance': feature_importance}).sort_values('importance', ascending = False)
 df = df.sort_values('importance', ascending = False).reset_index()
     
