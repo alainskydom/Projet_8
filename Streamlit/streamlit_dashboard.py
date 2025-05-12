@@ -173,9 +173,11 @@ st.plotly_chart(fig)
 features=load_features()
 feature_importance=load_feature_importance()
 st.write("feature: ", len(features))
-st.table(features)
+dft = pd.DataFrame({'feature': features)
+st.table(dft)
 st.write("feature_importance:", len(feature_importance))
-st.table(feature_importance)
+dfti = pd.DataFrame({'feature_importance': feature_importance)
+st.table(dfti)
 
 
 st.markdown("<u>Interprétation du modèle - Importance des variables globale :</u>", unsafe_allow_html=True) 
