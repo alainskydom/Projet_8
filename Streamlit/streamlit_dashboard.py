@@ -160,7 +160,7 @@ fig = px.pie(df_pie, names="Classe", values="Pourcentage", title="Répartition d
              color_discrete_sequence=["#ff9999", "#66b3ff", "#99ff99"])
 
 # Affichage dans Streamlit
-st.title("Pie-Chart interactif de la colonne de  ANNUITY_INCOME_PERCENT")
+st.markdown("<u>Pie-Chart interactif de la colonne de  ANNUITY_INCOME_PERCENT</u>", unsafe_allow_html=True)
 st.plotly_chart(fig)
 
 st.markdown("<u>Interprétation du modèle - Importance des variables globale :</u>", unsafe_allow_html=True) 
