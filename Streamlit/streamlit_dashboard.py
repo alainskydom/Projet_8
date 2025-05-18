@@ -126,14 +126,16 @@ for feature in features:
 
 st.sidebar.subheader("Analyse bivariées, choisissez deux variables")
 df_ = pd.read_csv(r"Streamlit/df_api_1000.csv")
+if "dropdown_selected" not in st.session_state:
+    st.session_state.dropdown_selected = None
 variables_1=['CREDIT_TERM','DAYS_BIRTH', "DAYS_EMPLOYED", "AMT_ANNUITY", "CREDIT_INCOME_PERCENT","ANNUITY_INCOME_PERCENT"]
 options_1 = ["Sélectionnez une option", variables_1]
 variables_2=['CREDIT_TERM','DAYS_BIRTH', "DAYS_EMPLOYED", "AMT_ANNUITY", "CREDIT_INCOME_PERCENT","ANNUITY_INCOME_PERCENT"]
 options_2 = ["Sélectionnez une option", variables_2]
-features_1=st.sidebar.selectbox("Sélectionnez une première caractéristique :", options_1)
+features_1=st.sidebar.selectbox("Sélectionnez une première caractéristique :", options_1, key="dropdown_selected", index=None)
 st.sidebar.write("Vous avez selectionné ", features_1)
 
-features_2=st.sidebar.selectbox("Sélectionnez une deuxième caractéristique :", options_2)
+features_2=st.sidebar.selectbox("Sélectionnez une deuxième caractéristique :", options_2, key="dropdown_selected", index=None)
 st.sidebar.write("Vous avez selectionné ", features_2)
 
 # Set the style of plots
