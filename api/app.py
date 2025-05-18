@@ -118,5 +118,5 @@ def get_ids():
     return jsonify({'ids': ids})
 
 if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 8080))
+    port = int(os.environ.get("PORT", 8080,_timeout=60))
     app.run(host='0.0.0.0', port=port)
