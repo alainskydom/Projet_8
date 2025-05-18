@@ -44,40 +44,41 @@ if st.button("Obtenir la prédiction via API"):
                 st.success("✅ Prêt accordé")
 
             st.metric(label="Probabilité de défaut", value=f"{proba*100:.2f} %")
+        else:
+            st.warning(f"Erreur API : {response.status_code}")
+            st.write(response.json())
+        except Exception as e:
+            st.error(f"Erreur lors de la connexion à l'API : {e}")
 
 
             #st.sidebar.write("*Caractéritiques du client :**", result["features"])
             
-            if st.button("🧾 Comparaison client vs moyenne (5 variables clés)"):
+if st.button("🧾 Comparaison client vs moyenne (5 variables clés)"):
             #st.sidebar.subheader("🧾 Comparaison client vs moyenne (5 variables clés)")
-                df_compare = pd.DataFrame({
-                    "Valeur client": result["features"],
-                    "Moyenne globale": result["global_means"]})
+    df_compare = pd.DataFrame({
+    "Valeur client": result["features"],
+    "Moyenne globale": result["global_means"]})
             
-                st.sidebar.dataframe(df_compare)
+    st.dataframe(df_compare)
 
-                st.sidebar.subheader("📉 Visualisation comparative")
-                fig, ax = plt.subplots(figsize=(8, 4))
-                df_compare.plot(kind="bar", ax=ax)
-                plt.xticks(rotation=45, ha="right")
-                plt.tight_layout()
-                st.sidebar.pyplot(fig)
+    st.sidebar.subheader("📉 Visualisation comparative")
+    fig, ax = plt.subplots(figsize=(8, 4))
+    df_compare.plot(kind="bar", ax=ax)
+    plt.xticks(rotation=45, ha="right")
+    plt.tight_layout()
+    st.sidebar.pyplot(fig)
 
-                st.subheader("🔍 Interprétation SHAP des variables clés")
-                shap_df = pd.DataFrame.from_dict(result["shap_values"], orient="index", columns=["SHAP value"])
-                shap_df = shap_df.sort_values("SHAP value", key=abs, ascending=True)
+                
+if st.button("🔍 Interprétation SHAP des variables clés"):
+    shap_df = pd.DataFrame.from_dict(result["shap_values"], orient="index", columns=["SHAP value"])
+    shap_df = shap_df.sort_values("SHAP value", key=abs, ascending=True)
+    fig2, ax2 = plt.subplots()
+    shap_df.plot(kind="barh", legend=False, ax=ax2)
+    ax2.set_title("Impact des variables sur la prédiction")
+    plt.tight_layout()
+    st.pyplot(fig2)
 
-                fig2, ax2 = plt.subplots()
-                shap_df.plot(kind="barh", legend=False, ax=ax2)
-                ax2.set_title("Impact des variables sur la prédiction")
-                plt.tight_layout()
-                st.pyplot(fig2)
-
-        else:
-            st.warning(f"Erreur API : {response.status_code}")
-            st.write(response.json())
-    except Exception as e:
-        st.error(f"Erreur lors de la connexion à l'API : {e}")
+       
 
 @st.cache_resource()
 def load_features():
