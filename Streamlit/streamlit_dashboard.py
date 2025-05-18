@@ -134,7 +134,8 @@ variables_2=['CREDIT_TERM','DAYS_BIRTH', "DAYS_EMPLOYED", "AMT_ANNUITY", "CREDIT
 #options_2 = ["Sélectionnez une option", variables_2]
 features_1=st.sidebar.selectbox("Sélectionnez une première caractéristique :", variables_1, key="dropdown_selected", index=None)
 st.sidebar.write("Vous avez selectionné ", features_1)
-
+if "dropdown_selected" not in st.session_state:
+    st.session_state.dropdown_selected = None
 features_2=st.sidebar.selectbox("Sélectionnez une deuxième caractéristique :", variables_2, key="dropdown_selected", index=None)
 st.sidebar.write("Vous avez selectionné ", features_2)
 
