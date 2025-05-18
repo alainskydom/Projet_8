@@ -77,6 +77,7 @@ if st.button("🧾 Comparaison client vs moyenne (5 variables clés)"):
         st.error(f"Erreur lors de la connexion à l'API : {e}")
                 
 if st.button("🔍 Interprétation SHAP des variables clés"):
+    url = "https://projet8-production-31ea.up.railway.app/api/predict"
     try:
         response = requests.post(url, json={"id_client": int(client_id)})
         if response.status_code == 200:
