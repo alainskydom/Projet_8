@@ -48,7 +48,7 @@ if st.button("Obtenir la prédiction via API"):
 
             #st.sidebar.write("*Caractéritiques du client :**", result["features"])
             
-            if st.button("("🧾 Comparaison client vs moyenne (5 variables clés)"):
+            if st.button("🧾 Comparaison client vs moyenne (5 variables clés)"):
             #st.sidebar.subheader("🧾 Comparaison client vs moyenne (5 variables clés)")
                 df_compare = pd.DataFrame({
                     "Valeur client": result["features"],
@@ -63,15 +63,15 @@ if st.button("Obtenir la prédiction via API"):
                 plt.tight_layout()
                 st.sidebar.pyplot(fig)
 
-            st.subheader("🔍 Interprétation SHAP des variables clés")
-            shap_df = pd.DataFrame.from_dict(result["shap_values"], orient="index", columns=["SHAP value"])
-            shap_df = shap_df.sort_values("SHAP value", key=abs, ascending=True)
+                st.subheader("🔍 Interprétation SHAP des variables clés")
+                shap_df = pd.DataFrame.from_dict(result["shap_values"], orient="index", columns=["SHAP value"])
+                shap_df = shap_df.sort_values("SHAP value", key=abs, ascending=True)
 
-            fig2, ax2 = plt.subplots()
-            shap_df.plot(kind="barh", legend=False, ax=ax2)
-            ax2.set_title("Impact des variables sur la prédiction")
-            plt.tight_layout()
-            st.pyplot(fig2)
+                fig2, ax2 = plt.subplots()
+                shap_df.plot(kind="barh", legend=False, ax=ax2)
+                ax2.set_title("Impact des variables sur la prédiction")
+                plt.tight_layout()
+                st.pyplot(fig2)
 
         else:
             st.warning(f"Erreur API : {response.status_code}")
