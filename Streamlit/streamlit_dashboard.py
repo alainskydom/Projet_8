@@ -141,14 +141,15 @@ features_2=st.sidebar.selectbox("Sélectionnez une deuxième caractéristique :"
 st.sidebar.write("Vous avez selectionné ", features_2)
 
 # Set the style of plots
-plt.style.use('fivethirtyeight')
-fig=plt.figure(figsize=(6, 6))
+if feature_1 is not None and feature_2 is not None:
+    plt.style.use('fivethirtyeight')
+    fig=plt.figure(figsize=(6, 6))
 
-h2=plt.scatter(df_[features_1], df_[features_2], color='blue')
-plt.xlabel(features_1)
-plt.ylabel(features_2)
-plt.title("Analyse bivariée")
-st.pyplot(fig)
+    h2=plt.scatter(df_[features_1], df_[features_2], color='blue')
+    plt.xlabel(features_1)
+    plt.ylabel(features_2)
+    plt.title("Analyse bivariée")
+    st.pyplot(fig)
 
 # Création d'un pie-chart interactif avec Plotly
 
