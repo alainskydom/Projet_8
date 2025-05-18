@@ -72,37 +72,6 @@ if st.button("Obtenir la prédiction via API"):
             plt.tight_layout()
             st.pyplot(fig2)
 
-            st.markdown("<u>Interprétation du modèle - Importance des variables globale :</u>", unsafe_allow_html=True) 
-
-            # Charger les features
-            df_ = pd.read_csv(r"Streamlit/df_api_1000.csv")
-            df_=df_.loc[:, ~df_.columns.str.match ('Unnamed')]
-            #df_=df_.drop(['SK_ID_CURR'], axis=1)
-            features=df_.columns.values.tolist()
-            feature_importance=load_feature_importance()
-            df = pd.DataFrame({'feature': features,
-                                                'importance': feature_importance}).sort_values('importance', ascending = False)
-            df = df.sort_values('importance', ascending = False).reset_index()
-              
-            # Normalize the feature importances to add up to one
-            df['importance_normalized'] = df['importance'] / df['importance'].sum()
-                   # Make a horizontal bar chart of feature importances
-            fig=plt.figure(figsize = (15, 10))
-            ax = plt.subplot()
-                  # Need to reverse the index to plot most important on top
-            ax.barh(list(reversed(list(df.index[:30]))), 
-            df['importance_normalized'].head(30), 
-            align = 'center', edgecolor = 'k')
-                
-                    # Set the yticks and labels
-            ax.set_yticks(list(reversed(list(df.index[:30]))))
-            ax.set_yticklabels(df['feature'].head(30))
-                
-                    # Plot labeling
-            plt.xlabel('Normalized Importance'); plt.title('Feature Importances')
-            st.pyplot(fig)
-
-
         else:
             st.warning(f"Erreur API : {response.status_code}")
             st.write(response.json())
@@ -131,8 +100,35 @@ def load_feature_importance():
         lst_id.append(i)
     return lst_id
 
+ st.markdown("<u>Interprétation du modèle - Importance des variables globale :</u>", unsafe_allow_html=True) 
 
-
+# Charger les features
+df_ = pd.read_csv(r"Streamlit/df_api_1000.csv")
+df_=df_.loc[:, ~df_.columns.str.match ('Unnamed')]
+#df_=df_.drop(['SK_ID_CURR'], axis=1)
+features=df_.columns.values.tolist()
+feature_importance=load_feature_importance()
+df = pd.DataFrame({'feature': features,
+                   'importance': feature_importance}).sort_values('importance', ascending = False)
+df = df.sort_values('importance', ascending = False).reset_index()
+              
+# Normalize the feature importances to add up to one
+df['importance_normalized'] = df['importance'] / df['importance'].sum()
+# Make a horizontal bar chart of feature importances
+fig=plt.figure(figsize = (15, 10))
+ax = plt.subplot()
+# Need to reverse the index to plot most important on top
+ax.barh(list(reversed(list(df.index[:30]))), 
+df['importance_normalized'].head(30), 
+align = 'center', edgecolor = 'k')
+                
+# Set the yticks and labels
+ax.set_yticks(list(reversed(list(df.index[:30]))))
+ax.set_yticklabels(df['feature'].head(30))
+                
+# Plot labeling
+plt.xlabel('Normalized Importance'); plt.title('Feature Importances')
+st.pyplot(fig)
 
 # Afficher les graphiques des variables:
  
