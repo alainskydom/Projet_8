@@ -46,6 +46,7 @@ if st.button("Obtenir la prédiction via API"):
             st.metric(label="Probabilité de défaut", value=f"{proba*100:.2f} %")
             if st.button("🧾 Comparaison client vs moyenne (5 variables clés)"):
             #st.sidebar.subheader("🧾 Comparaison client vs moyenne (5 variables clés)")
+                result = response.json()
                 df_compare = pd.DataFrame({
                 "Valeur client": result["features"],
                 "Moyenne globale": result["global_means"]})
