@@ -44,25 +44,16 @@ if st.button("Obtenir la prédiction via API"):
                 st.success("✅ Prêt accordé")
 
             st.metric(label="Probabilité de défaut", value=f"{proba*100:.2f} %")
-        else:
-            st.warning(f"Erreur API : {response.status_code}")
-            st.write(response.json())
-    except Exception as e:
-        st.error(f"Erreur lors de la connexion à l'API : {e}")
-            
-if st.button("🧾 Comparaison client vs moyenne (5 variables clés)"):
-    url = "https://projet8-production-31ea.up.railway.app/api/predict"
 
-    try:
-        response = requests.post(url, json={"id_client": int(client_id)})
-        if response.status_code == 200:
-            result = response.json()
-            #st.sidebar.subheader("🧾 Comparaison client vs moyenne (5 variables clés)")
-             
+
+            #st.sidebar.write("*Caractéritiques du client :**", result["features"])
+
+            st.sidebar.subheader("🧾 Comparaison client vs moyenne (5 variables clés)")
             df_compare = pd.DataFrame({
-            "Valeur client": result["features"],
-            "Moyenne globale": result["global_means"]})
-            st.dataframe(df_compare)
+                "Valeur client": result["features"],
+                "Moyenne globale": result["global_means"]
+            })
+            st.sidebar.dataframe(df_compare)
 
             st.sidebar.subheader("📉 Visualisation comparative")
             fig, ax = plt.subplots(figsize=(8, 4))
@@ -70,37 +61,35 @@ if st.button("🧾 Comparaison client vs moyenne (5 variables clés)"):
             plt.xticks(rotation=45, ha="right")
             plt.tight_layout()
             st.sidebar.pyplot(fig)
-        else:
-            st.warning(f"Erreur API : {response.status_code}")
-            st.write(response.json())
-    except Exception as e:
-        st.error(f"Erreur lors de la connexion à l'API : {e}")
-                
-if st.button("🔍 Interprétation SHAP des variables clés"):
-    url = "https://projet8-production-31ea.up.railway.app/api/predict"
-    try:
-        response = requests.post(url, json={"id_client": int(client_id)})
-        if response.status_code == 200:
-            result = response.json()
+            if st.button("("🧾 Comparaison client vs moyenne (5 variables clés)"):
+                df_compare = pd.DataFrame({
+                "Valeur client": result["features"],
+                "Moyenne globale": result["global_means"]})
+            
+                st.sidebar.dataframe(df_compare)
+
+                st.sidebar.subheader("📉 Visualisation comparative")
+                fig, ax = plt.subplots(figsize=(8, 4))
+                df_compare.plot(kind="bar", ax=ax)
+                plt.xticks(rotation=45, ha="right")
+                plt.tight_layout()
+                st.sidebar.pyplot(fig)
+
+            st.subheader("🔍 Interprétation SHAP des variables clés")
             shap_df = pd.DataFrame.from_dict(result["shap_values"], orient="index", columns=["SHAP value"])
             shap_df = shap_df.sort_values("SHAP value", key=abs, ascending=True)
+
             fig2, ax2 = plt.subplots()
             shap_df.plot(kind="barh", legend=False, ax=ax2)
             ax2.set_title("Impact des variables sur la prédiction")
             plt.tight_layout()
             st.pyplot(fig2)
+
         else:
             st.warning(f"Erreur API : {response.status_code}")
             st.write(response.json())
     except Exception as e:
         st.error(f"Erreur lors de la connexion à l'API : {e}")
-
-
-            #st.sidebar.write("*Caractéritiques du client :**", result["features"])
-            
-
-
-       
 
 @st.cache_resource()
 def load_features():
@@ -125,13 +114,13 @@ def load_feature_importance():
     return lst_id
 
 # Afficher les graphiques des variables:
- 
+
 st.sidebar.header("Plus d'informations")
 st.sidebar.subheader("Visualisations univariées")
 variables=['CREDIT_TERM','DAYS_BIRTH', "DAYS_EMPLOYED", "AMT_ANNUITY", "CREDIT_INCOME_PERCENT","ANNUITY_INCOME_PERCENT"]
 features=st.sidebar.multiselect("les variables clés:", variables)
 df_ = pd.read_csv(r"Streamlit/df_api_1000.csv")
- 
+
 for feature in features:
          # Set the style of plots
          plt.style.use('fivethirtyeight')
@@ -198,7 +187,7 @@ feature_importance=load_feature_importance()
 df = pd.DataFrame({'feature': features,
                                     'importance': feature_importance}).sort_values('importance', ascending = False)
 df = df.sort_values('importance', ascending = False).reset_index()
-  
+
 # Normalize the feature importances to add up to one
 df['importance_normalized'] = df['importance'] / df['importance'].sum()
        # Make a horizontal bar chart of feature importances
@@ -208,11 +197,11 @@ ax = plt.subplot()
 ax.barh(list(reversed(list(df.index[:30]))), 
 df['importance_normalized'].head(30), 
 align = 'center', edgecolor = 'k')
-    
+
         # Set the yticks and labels
 ax.set_yticks(list(reversed(list(df.index[:30]))))
 ax.set_yticklabels(df['feature'].head(30))
-    
+
         # Plot labeling
 plt.xlabel('Normalized Importance'); plt.title('Feature Importances')
 st.pyplot(fig)
@@ -222,7 +211,7 @@ st.pyplot(fig)
 
 #df = pd.DataFrame({'feature': features,'importance': feature_importance}).sort_values('importance', ascending = False)
 #df = df.sort_values('importance', ascending = False).reset_index()
-    
+
 # Normalize the feature importances to add up to one
 #df['importance_normalized'] = df['importance'] / df['importance'].sum()
 # Make a horizontal bar chart of feature importances
@@ -232,13 +221,13 @@ st.pyplot(fig)
 #ax.barh(list(reversed(list(df.index[:30]))), 
 #df['importance_normalized'].head(30), 
 #align = 'center', edgecolor = 'k')
-    
+
 # Set the yticks and labels
 #ax.set_yticks(list(reversed(list(df.index[:30]))))
 #ax.set_yticklabels(df['feature'].head(30))
-    
+
 # Plot labeling
 #plt.xlabel('Normalized Importance'); plt.title('Feature Importances')
 #st.pyplot(fig)
-        
 
+~
