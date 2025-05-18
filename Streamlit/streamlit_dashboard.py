@@ -61,7 +61,7 @@ if st.button("Obtenir la prédiction via API"):
             plt.xticks(rotation=45, ha="right")
             plt.tight_layout()
             st.sidebar.pyplot(fig)
-            if st.button("("Comparaison client vs moyenne (5 variables clés)"):
+            if st.button("Comparaison client vs moyenne (5 variables clés)"):
                 df_compare = pd.DataFrame({
                 "Valeur client": result["features"],
                 "Moyenne globale": result["global_means"]})
