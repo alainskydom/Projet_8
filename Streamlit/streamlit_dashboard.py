@@ -47,8 +47,8 @@ if st.button("Obtenir la prédiction via API"):
         else:
             st.warning(f"Erreur API : {response.status_code}")
             st.write(response.json())
-except Exception as e:
-    st.error(f"Erreur lors de la connexion à l'API : {e}")
+    except Exception as e:
+        st.error(f"Erreur lors de la connexion à l'API : {e}")
             
 if st.button("🧾 Comparaison client vs moyenne (5 variables clés)"):
     url = "https://projet8-production-31ea.up.railway.app/api/predict"
@@ -73,8 +73,8 @@ if st.button("🧾 Comparaison client vs moyenne (5 variables clés)"):
         else:
             st.warning(f"Erreur API : {response.status_code}")
             st.write(response.json())
-except Exception as e:
-    st.error(f"Erreur lors de la connexion à l'API : {e}")
+    except Exception as e:
+        st.error(f"Erreur lors de la connexion à l'API : {e}")
                 
 if st.button("🔍 Interprétation SHAP des variables clés"):
     try:
@@ -91,8 +91,8 @@ if st.button("🔍 Interprétation SHAP des variables clés"):
         else:
             st.warning(f"Erreur API : {response.status_code}")
             st.write(response.json())
-except Exception as e:
-    st.error(f"Erreur lors de la connexion à l'API : {e}")
+    except Exception as e:
+        st.error(f"Erreur lors de la connexion à l'API : {e}")
 
 
             #st.sidebar.write("*Caractéritiques du client :**", result["features"])
