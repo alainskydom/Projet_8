@@ -141,7 +141,7 @@ features_2=st.sidebar.selectbox("Sélectionnez une deuxième caractéristique :"
 st.sidebar.write("Vous avez selectionné ", features_2)
 
 # Set the style of plots
-if feature_1 is not None and feature_2 is not None:
+if features_1 is not None and features_2 is not None:
     plt.style.use('fivethirtyeight')
     fig=plt.figure(figsize=(6, 6))
 
