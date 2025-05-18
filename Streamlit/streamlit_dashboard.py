@@ -134,7 +134,7 @@ variables_1=['CREDIT_TERM','DAYS_BIRTH', "DAYS_EMPLOYED", "AMT_ANNUITY", "CREDIT
 #options_1 = ["Sélectionnez une option", variables_1]
 variables_2=['CREDIT_TERM','DAYS_BIRTH', "DAYS_EMPLOYED", "AMT_ANNUITY", "CREDIT_INCOME_PERCENT","ANNUITY_INCOME_PERCENT"]
 #options_2 = ["Sélectionnez une option", variables_2]
-features_1=st.sidebar.selectbox("Sélectionnez une première caractéristique :", variables_1, key="dropdown_selected_1")
+features_1=st.sidebar.selectbox("Sélectionnez une première caractéristique :", variables_1, key="dropdown_selected_1", index=None)
 st.sidebar.write("Vous avez selectionné ", features_1)
 
 features_2=st.sidebar.selectbox("Sélectionnez une deuxième caractéristique :", variables_2, key="dropdown_selected_2", index=None)
