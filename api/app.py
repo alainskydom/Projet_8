@@ -117,6 +117,6 @@ def get_ids():
     ids = sorted(df['SK_ID_CURR'].tolist())
     return jsonify({'ids': ids})
 
-#if __name__ == '__main__':
-    #port = int(os.environ.get("PORT", 8080))
-    #app.run(host='0.0.0.0', port=port)
+if __name__ == '__main__':
+    port = int(os.environ.get("PORT", 8080))
+    app.run(host='0.0.0.0', port=port)
