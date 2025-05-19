@@ -73,8 +73,8 @@ def api_predict():
         #if proba < threshold:
             #prediction=0
         #else: prediction=1
-        #client_data = X_top.iloc[0].to_dict()
-        #global_means = df[top_features].mean().round(4).to_dict()
+        client_data = X_top.iloc[0].to_dict()
+        global_means = df[top_features].mean().round(4).to_dict()
 
         shap_values = explainer(X_top, check_additivity=False)
         shap_dict = dict(zip(top_features, shap_values.values[0].tolist()))
