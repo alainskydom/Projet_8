@@ -73,9 +73,9 @@ if st.button("Obtenir la prédiction via API"):
         plt.tight_layout()
         st.pyplot(fig2)
 
-else:
-    st.warning(f"Erreur API : {response.status_code}")
-    st.write(response.json())
+        else:
+            st.warning(f"Erreur API : {response.status_code}")
+            st.write(response.json())
     except Exception as e:
         st.error(f"Erreur lors de la connexion à l'API : {e}")
 
