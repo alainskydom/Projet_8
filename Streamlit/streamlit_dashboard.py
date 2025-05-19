@@ -21,7 +21,7 @@ try:
 except Exception as e:
     st.error(f"Erreur lors de la récupération des IDs : {e}")
     st.stop()
-st.write("Vous avez selectionné la demande n°",  client_id)
+st.write("Vous avez selectionné la demande n°",  client_id) 
 
 
 
