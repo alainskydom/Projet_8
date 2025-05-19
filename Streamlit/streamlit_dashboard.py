@@ -39,12 +39,12 @@ if st.button("Obtenir la prédiction via API"):
         load_ids()
 
             #if prediction == 1:
-            if proba > 0.07:
-                st.error("❌ Prêt NON accordé")
-            else:
-                st.success("✅ Prêt accordé")
+        if proba > 0.07:
+            st.error("❌ Prêt NON accordé")
+        else:
+            st.success("✅ Prêt accordé")
 
-            st.metric(label="Probabilité de défaut", value=f"{proba*100:.2f} %")
+        st.metric(label="Probabilité de défaut", value=f"{proba*100:.2f} %")
 
 
             #st.sidebar.write("*Caractéritiques du client :**", result["features"])
