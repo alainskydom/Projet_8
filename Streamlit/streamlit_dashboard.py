@@ -37,6 +37,7 @@ if st.button("Obtenir la prédiction via API"):
             #prediction = result["prediction"]
             #proba = result["probability"]
         load_ids()
+        client_id = st.sidebar.selectbox("Sélectionnez un identifiant client :", ids)
 
             #if prediction == 1:
         if proba > 0.07:
@@ -73,9 +74,9 @@ if st.button("Obtenir la prédiction via API"):
         plt.tight_layout()
         st.pyplot(fig2)
 
-        else:
-            st.warning(f"Erreur API : {response.status_code}")
-            st.write(response.json())
+        #else:
+            #st.warning(f"Erreur API : {response.status_code}")
+            #st.write(response.json())
     except Exception as e:
         st.error(f"Erreur lors de la connexion à l'API : {e}")
 
@@ -106,7 +107,9 @@ def load_ids():
     id_response = requests.get("https://projet8-production-31ea.up.railway.app/api/ids") 
     id_response.raise_for_status()
     ids = id_response.json().get("ids", [])
-    client_id = st.sidebar.selectbox("Sélectionnez un identifiant client :", ids)
+    return ids
+   
+    
 
 if st.button("Voir l'importance globale des différentes caractéristiques"):
     st.markdown("<u>Interprétation du modèle - Importance des variables globale :</u>", unsafe_allow_html=True) 
