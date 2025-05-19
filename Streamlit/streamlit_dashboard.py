@@ -31,11 +31,12 @@ if st.button("Obtenir la prédiction via API"):
     url = "https://projet8-production-31ea.up.railway.app/api/predict"
 
     try:
-        response = requests.post(url, json={"id_client": int(client_id)})
-        if response.status_code == 200:
-            result = response.json()
-            prediction = result["prediction"]
-            proba = result["probability"]
+        #response = requests.post(url, json={"id_client": int(client_id)})
+        #if response.status_code == 200:
+            #result = response.json()
+            #prediction = result["prediction"]
+            #proba = result["probability"]
+        load_ids()
 
             #if prediction == 1:
             if proba > 0.07:
@@ -99,6 +100,13 @@ def load_feature_importance():
     for i in data:
         lst_id.append(i)
     return lst_id
+    
+@st.cache_data()
+def load_ids():
+    id_response = requests.get("https://projet8-production-31ea.up.railway.app/api/ids") 
+    id_response.raise_for_status()
+    ids = id_response.json().get("ids", [])
+    client_id = st.sidebar.selectbox("Sélectionnez un identifiant client :", ids)
 
 if st.button("Voir l'importance globale des différentes caractéristiques"):
     st.markdown("<u>Interprétation du modèle - Importance des variables globale :</u>", unsafe_allow_html=True) 
