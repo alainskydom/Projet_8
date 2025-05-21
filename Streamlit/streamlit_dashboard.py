@@ -128,7 +128,7 @@ if st.button("Voir l'importance globale des différentes caractéristiques"):
     ax.set_yticklabels(df['feature'].head(30))
                     
     # Plot labeling
-    plt.xlabel('Normalized Importance'); plt.title('Feature Importances')
+    plt.xlabel('Normalized Importance',fontsize=14); plt.title('Feature Importances',fontsize=16)
     st.pyplot(fig)
     
 
