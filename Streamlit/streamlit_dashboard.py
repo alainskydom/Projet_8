@@ -100,9 +100,9 @@ def load_feature_importance():
         lst_id.append(i)
     return lst_id
 
-st.markdown("<u>Interprétation du modèle - Importance des variables globale :</u>", unsafe_allow_html=True) 
+
 if st.button("Voir l'importance globale des différentes caractéristiques"):
-    st.markdown("<u>Interprétation du modèle - Importance des variables globale :</u>", unsafe_allow_html=True) 
+    
     # Charger les features
     df_ = pd.read_csv(r"Streamlit/df_api_1000.csv")
     df_=df_.loc[:, ~df_.columns.str.match ('Unnamed')]
